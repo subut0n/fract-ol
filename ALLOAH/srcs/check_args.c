@@ -6,7 +6,7 @@
 /*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 14:34:11 by addzikow          #+#    #+#             */
-/*   Updated: 2021/10/27 14:41:24 by addzikow         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:47:03 by addzikow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,19 @@ void	init_arg_julia(t_fract *fract)
 int	isasciianumber(char *ascii)
 {
 	int	i;
+	int	nb_dot;
 
 	i = 0;
-	while (ascii[i] != '\0')
+	nb_dot = 0;
+	while (ascii[i])
 	{
+		if (ascii[0] == '-')
+			i++;
 		if ((ascii[i] < '0' || ascii[i] > '9') && ascii[i] != '.')
+			return (0);
+		if (ascii[i] == '.')
+			nb_dot += 1;
+		if (nb_dot > 1)
 			return (0);
 		i++;
 	}
