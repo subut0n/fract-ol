@@ -6,7 +6,7 @@
 /*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 16:18:54 by addzikow          #+#    #+#             */
-/*   Updated: 2021/10/25 15:38:23 by addzikow         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:05:38 by addzikow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-
-#define BUFFER_SIZE 32
-
-typedef struct s_gnl_data
-{
-	char	buf[BUFFER_SIZE + 1];
-	int		i;
-	int		n;
-	int		fd;
-}				t_gnl_data;
 
 void				*ft_memset(void *s, int c, size_t n);
 void				ft_bzero(void *s, size_t n);
@@ -87,9 +77,9 @@ char				*ft_ltoa(long n);
 int					ft_count_digit(int n);
 size_t				ft_absolute(int nbr);
 long int			ft_atol(const char *str);
-int 				*ft_argstoints(int ac, char **av);
-int					get_next_line(int fd, char **line);
+int					*ft_argstoints(int ac, char **av);
 void				ft_putnbr(int n);
 int					ft_strcmp(const char *s1, const char *s2);
+float				ft_atof(char *ascii);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 12:13:49 by addzikow          #+#    #+#             */
-/*   Updated: 2021/10/26 12:14:28 by addzikow         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:58:52 by addzikow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	zoom(int button, int x, int y, t_fract *fract)
 		fract->scale = fract->z / (fract->line_length / 4);
 		x = x - (fract->line_length / 4) / 2;
 		y = y - (fract->line_length / 4) / 2;
-		fract->x += (x * (fract->z_tmp / (fract->line_length / 4))) - (x * fract->scale);
-		fract->y += (y * (fract->z_tmp / (fract->line_length / 4))) - (y * fract->scale);
+		fract->x += (x * (fract->z_tmp / (fract->line_length / 4)))
+			- (x * fract->scale);
+		fract->y += (y * (fract->z_tmp / (fract->line_length / 4)))
+			- (y * fract->scale);
 		fract->zoom_x = (fract->line_length / 4) / fract->z;
 		fract->zoom_y = (fract->line_length / 4) / fract->z;
 		choose_fract(fract);
@@ -32,7 +34,7 @@ void	zoom(int button, int x, int y, t_fract *fract)
 	}
 }
 
-int		zoom_set(int button, int x, int y, t_fract *fract)
+int	zoom_set(int button, int x, int y, t_fract *fract)
 {
 	if (button == 1 || button == 4)
 	{
@@ -49,3 +51,5 @@ int		zoom_set(int button, int x, int y, t_fract *fract)
 	zoom(button, x, y, fract);
 	return (0);
 }
+/* permet de faire evoluer les variables afin de faire
+evoluer le zoom en fonction des iterations du celui-ci. */

@@ -6,13 +6,13 @@
 /*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 12:15:52 by addzikow          #+#    #+#             */
-/*   Updated: 2021/10/26 12:16:26 by addzikow         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:43:13 by addzikow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int		color(int keycode, t_fract *fract)
+int	color(int keycode, t_fract *fract)
 {
 	if (keycode == 69)
 	{
@@ -32,3 +32,4 @@ int		color(int keycode, t_fract *fract)
 		exit(0);
 	return (0);
 }
+// permet de modifier les jeux de couleurs des fractales avec [-] et [+]

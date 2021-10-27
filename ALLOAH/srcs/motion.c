@@ -6,13 +6,13 @@
 /*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 12:16:55 by addzikow          #+#    #+#             */
-/*   Updated: 2021/10/26 12:17:10 by addzikow         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:53:42 by addzikow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-int		motion(int x, int y, t_fract *fract)
+int	motion(int x, int y, t_fract *fract)
 {
 	if (fract->fract == 2 && fract->move == 1)
 	{
@@ -30,3 +30,5 @@ int		motion(int x, int y, t_fract *fract)
 	}
 	return (0);
 }
+/* permet de modifier le mouvement de la fractale 
+selon la position de la souris avec Julia */

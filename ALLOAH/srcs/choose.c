@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   choose.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 12:39:57 by addzikow          #+#    #+#             */
-/*   Updated: 2021/10/27 15:03:29 by addzikow         ###   ########.fr       */
+/*   Created: 2021/10/26 12:17:34 by addzikow          #+#    #+#             */
+/*   Updated: 2021/10/27 14:41:44 by addzikow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/fractol.h"
 
-long int	ft_atol(const char *str)
+void	choose_fract(t_fract *fract)
 {
-	long int	final;
-	int			sign;
-	int			i;
+	if (fract->fract == 1)
+		draw_mand(fract);
+	if (fract->fract == 2)
+		draw_jul(fract);
+}
 
-	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	sign = 1;
-	if ((str[i] == '+') || (str[i] == '-'))
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	final = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		final = final * 10 + sign * (str[i] - 48);
-		i++;
-	}
-	return (final);
+void	change_reset(int keycode, t_fract *fract)
+{
+	if (keycode == 18)
+		mandelbrot(fract);
+	if (keycode == 19)
+		julia(fract);
+}
+
+int	exit_win(void)
+{
+	exit(0);
 }

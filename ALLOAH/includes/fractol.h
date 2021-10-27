@@ -6,7 +6,7 @@
 /*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 13:13:59 by addzikow          #+#    #+#             */
-/*   Updated: 2021/10/26 12:19:25 by addzikow         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:07:23 by addzikow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <pthread.h>
 # include <stdio.h>
 
-typedef struct		s_fract
+typedef struct s_fract
 {
 	double	x;
 	double	y;
@@ -39,6 +39,8 @@ typedef struct		s_fract
 	char	*img;
 	double	c_r;
 	double	c_i;
+	double	c_r_arg;
+	double	c_i_arg;
 	double	z_r;
 	double	z_i;
 	double	temp;
@@ -48,30 +50,20 @@ typedef struct		s_fract
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	double	xb;
-	double	xb2;
-	double	yb;
-	double	yb2;
-	double	h;
-	double	fcs;
 	int		color;
 	int		fract;
 	int		move;
 	int		xindex;
 	int		yindex;
 	double	scale;
-	int		token;
-	double	temp2;
-	double	temp3;
 }					t_fract;
 
-int		check_args(int ac, char **av);
+int		check_args(int ac, char **av, t_fract *fract);
 void	check_init(char *arg, t_fract *fract);
 
 void	choose_fract(t_fract *fract);
 void	change_reset(int keycode, t_fract *fract);
 int		exit_win(void);
-
 
 int		move(int keycode, t_fract *fract);
 int		color(int keycode, t_fract *fract);
@@ -79,7 +71,7 @@ int		zoom_set(int button, int x, int y, t_fract *fract);
 void	zoom(int button, int x, int y, t_fract *fract);
 int		motion(int x, int y, t_fract *fract);
 
-void    init_graphics(t_fract *fract);
+void	init_graphics(t_fract *fract);
 
 void	pixel_to_img(t_fract *fract, int color);
 void	pix_color(t_fract *fract);
@@ -90,6 +82,9 @@ void	draw_mand(t_fract *fract);
 
 void	init_julia_values(t_fract *fract);
 void	julia(t_fract *fract);
+void	draw_pixel_jul(t_fract *fract);
 void	draw_jul(t_fract *fract);
+
+int		error_args(int ac, char **av);
 
 #endif
