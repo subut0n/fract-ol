@@ -1,81 +1,90 @@
-#ifndef _FRACTOL_H_
-# define _FRACTOL_H_
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/25 13:13:59 by addzikow          #+#    #+#             */
+/*   Updated: 2021/10/27 15:07:23 by addzikow         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "mlx.h"
-# include <stdio.h>
-# include <math.h>
-# include <stdbool.h>
-# include <stdlib.h>
-# include <fcntl.h>
+#ifndef FRACTOL_H
+# define FRACTOL_H
 # include "../libft/libft.h"
+# include "../mlx/mlx.h"
+# include <math.h>
+# include <pthread.h>
+# include <stdio.h>
 
-# define SCROLL_UP 5
-# define SCROLL_DOWN 4
-
-/*
-** Data (image)
-*/
-
-/*
-** img            — image identifier
-** data_addr      — image
-** bits_per_pixel — depth of image
-** line_length    — number of bytes used to store one line of image
-** endian         — little or big endian
-*/
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
+typedef struct s_fract
+{
+	double	x;
+	double	y;
+	double	z;
+	double	x1;
+	double	x2;
+	double	y1;
+	double	y2;
+	double	z_init;
+	double	z_tmp;
+	int		max;
+	int		i;
+	double	zoom;
+	double	zoom_y;
+	double	zoom_x;
+	double	image_x;
+	double	image_y;
+	char	*img;
+	double	c_r;
+	double	c_i;
+	double	c_r_arg;
+	double	c_i_arg;
+	double	z_r;
+	double	z_i;
+	double	temp;
+	void	*mlx;
+	void	*win;
+	void	*image;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+	int		color;
+	int		fract;
+	int		move;
+	int		xindex;
+	int		yindex;
+	double	scale;
+}					t_fract;
 
-typedef struct s_hooks {
-	bool scroll_up;
-	bool scroll_down;
-}				t_hooks;
+int		check_args(int ac, char **av, t_fract *fract);
+void	check_init(char *arg, t_fract *fract);
 
-typedef struct	s_resolution
-{
-	int x_res;
-	int y_res;
-}				t_resolution;
+void	choose_fract(t_fract *fract);
+void	change_reset(int keycode, t_fract *fract);
+int		exit_win(void);
 
-typedef struct s_coordinates
-{
-	float x0;
-	float x1;
-	float y0;
-	float y1;
-}				t_coordinates;
+int		move(int keycode, t_fract *fract);
+int		color(int keycode, t_fract *fract);
+int		zoom_set(int button, int x, int y, t_fract *fract);
+void	zoom(int button, int x, int y, t_fract *fract);
+int		motion(int x, int y, t_fract *fract);
 
-/*
-** Visualizer
-*/
+void	init_graphics(t_fract *fract);
 
-/*
-** mlx            - connection identifier
-** window         - window identifier
-** data			  - image data
-** resolution	  - window resolution
-** coord		  -
-*/
+void	pixel_to_img(t_fract *fract, int color);
+void	pix_color(t_fract *fract);
 
-typedef struct s_visualizer
-{
-	void		*mlx;
-	void		*window;
-	t_data 			*data;
-	t_hooks 		*hooks;
-	t_resolution	resolution;
-	t_coordinates	coord;
-	int				i_max;
-	char 			*set;
-}				t_visualizer;
+void	mandelbrot(t_fract *fract);
+void	init_mandelbrot_values(t_fract *fract);
+void	draw_mand(t_fract *fract);
 
-int check_args(int ac, char **av);
-void		register_keys_hooks(t_visualizer *visualizer);
+void	init_julia_values(t_fract *fract);
+void	julia(t_fract *fract);
+void	draw_pixel_jul(t_fract *fract);
+void	draw_jul(t_fract *fract);
+
+int		error_args(int ac, char **av);
 
 #endif

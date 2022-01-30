@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_argstoints.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: addzikow <addzikow@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/08 10:07:10 by addzikow          #+#    #+#             */
-/*   Updated: 2021/10/27 15:02:31 by addzikow         ###   ########.fr       */
+/*   Created: 2021/10/25 14:25:56 by addzikow          #+#    #+#             */
+/*   Updated: 2021/10/25 14:26:28 by addzikow         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	*ft_argstoints(int ac, char **av)
+void	ft_putnbr(int n)
 {
-	char	**fchar;
-	int		*fint;
-	int		i;
-
-	fchar = malloc(sizeof(char *) * (ac));
-	if (!fchar)
-		return (NULL);
-	i = 0;
-	while (i < ac - 1)
+	if (n == -2147483648)
 	{
-		fchar[i] = av[i + 1];
-		i++;
+		ft_putstr("-2147483648");
 	}
-	fchar[ac - 1] = NULL;
-	fint = malloc(sizeof(int *) * (ac));
-	if (!fint)
-		return (NULL);
-	i = 0;
-	while (fchar[i])
+	if (n < 0 && (!(n == -2147483648)))
 	{
-		fint[i] = ft_atoi(fchar[i]);
-		i++;
+		n = n * -1;
+		ft_putchar('-');
 	}
-	fint[ac - 1] = '\0';
-	return (fint);
+	if (n >= 0 && n < 10)
+	{
+		ft_putchar(n + '0');
+	}
+	if (n > 9)
+	{
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
+	}
 }
